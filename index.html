@@ -1,0 +1,1010 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hogwarts | El Mundo Mágico</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=IM+Fell+English+SC&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #08070b;
+    color: #eee6d3;
+    font-family: 'Cinzel', serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   FONDO MÁGICO
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,215,100,.04), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(80,100,255,.04), transparent 30%);
+}
+
+/* =========================
+   PARTÍCULAS
+========================= */
+
+#magic {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #fff5b8;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff5b8;
+    animation: floatStar linear infinite;
+    opacity: .7;
+}
+
+@keyframes floatStar {
+    from {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .8;
+    }
+
+    80% {
+        opacity: .8;
+    }
+
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 90;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5, 5, 8, .82);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,175,55,.2);
+}
+
+.logo {
+    font-family: 'IM Fell English SC', serif;
+    color: #d4af37;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    color: #ddd3bc;
+    text-decoration: none;
+    font-size: 13px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #d4af37;
+    text-shadow: 0 0 10px #d4af37;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(rgba(5,5,10,.4), rgba(5,5,10,.9)),
+        radial-gradient(circle at 50% 35%, #242035 0%, #0b0a10 45%, #030305 100%);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,.13), transparent 65%);
+    animation: pulse 5s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(.8);
+        opacity: .5;
+    }
+    to {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.wand {
+    font-size: 55px;
+    margin-bottom: 15px;
+    animation: wandFloat 3s ease-in-out infinite;
+}
+
+@keyframes wandFloat {
+    0%,100% { transform: rotate(-8deg) translateY(0); }
+    50% { transform: rotate(8deg) translateY(-10px); }
+}
+
+.hero h1 {
+    font-family: 'IM Fell English SC', serif;
+    font-size: clamp(55px, 10vw, 120px);
+    color: #d4af37;
+    letter-spacing: 8px;
+    text-shadow:
+        0 0 5px #d4af37,
+        0 0 25px rgba(212,175,55,.35);
+}
+
+.hero h2 {
+    font-weight: 400;
+    color: #c8c0ad;
+    font-size: clamp(15px, 2vw, 22px);
+    letter-spacing: 5px;
+    margin-top: 5px;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 25px auto;
+    line-height: 1.8;
+    color: #aaa49a;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    text-decoration: none;
+    transition: .3s;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    color: #09080b;
+    background: #d4af37;
+    box-shadow: 0 0 25px rgba(212,175,55,.5);
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+section {
+    padding: 100px 8%;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title small {
+    color: #d4af37;
+    letter-spacing: 4px;
+}
+
+.section-title h2 {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 48px;
+    margin-top: 8px;
+}
+
+.section-title p {
+    color: #8d8981;
+    margin-top: 12px;
+}
+
+/* =========================
+   HOGWARTS
+========================= */
+
+.about {
+    background:
+        linear-gradient(rgba(8,7,11,.95), rgba(8,7,11,.95)),
+        radial-gradient(circle at 50% 50%, #211d31, transparent 70%);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: auto;
+    align-items: center;
+}
+
+.castle {
+    min-height: 390px;
+    border: 1px solid rgba(212,175,55,.3);
+    background:
+        linear-gradient(to bottom, rgba(25,25,45,.2), rgba(5,5,8,.9)),
+        radial-gradient(circle at 50% 20%, #38324b, #0a0910 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: inset 0 0 70px rgba(0,0,0,.8);
+}
+
+.castle-symbol {
+    font-size: 150px;
+    filter: drop-shadow(0 0 25px rgba(212,175,55,.3));
+}
+
+.about-text h3 {
+    color: #d4af37;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    color: #aaa49a;
+    line-height: 2;
+    margin-bottom: 18px;
+}
+
+/* =========================
+   CASAS
+========================= */
+
+.houses {
+    background: #050509;
+}
+
+.house-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.house {
+    min-height: 330px;
+    padding: 30px 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,.12);
+    background: linear-gradient(145deg, #15141c, #09090d);
+    transition: .4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.house:hover {
+    transform: translateY(-12px);
+}
+
+.house::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+}
+
+.gryffindor::before { background: #ae0001; }
+.slytherin::before { background: #2a623d; }
+.ravenclaw::before { background: #222f5b; }
+.hufflepuff::before { background: #ecb939; }
+
+.house-icon {
+    font-size: 65px;
+    margin: 20px 0;
+}
+
+.house h3 {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.house p {
+    color: #8f8b84;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.gryffindor:hover {
+    box-shadow: 0 0 30px rgba(174,0,1,.25);
+}
+
+.slytherin:hover {
+    box-shadow: 0 0 30px rgba(42,98,61,.3);
+}
+
+.ravenclaw:hover {
+    box-shadow: 0 0 30px rgba(34,47,91,.4);
+}
+
+.hufflepuff:hover {
+    box-shadow: 0 0 30px rgba(236,185,57,.25);
+}
+
+/* =========================
+   PERSONAJES
+========================= */
+
+.characters {
+    background:
+        radial-gradient(circle at 20% 20%, #17132a, transparent 30%),
+        #09080d;
+}
+
+.character-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.character {
+    padding: 35px 25px;
+    text-align: center;
+    border: 1px solid rgba(212,175,55,.18);
+    background: rgba(255,255,255,.025);
+    transition: .3s;
+}
+
+.character:hover {
+    transform: scale(1.03);
+    border-color: rgba(212,175,55,.6);
+}
+
+.character-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    background: radial-gradient(circle, #332d44, #0c0b10);
+    border: 1px solid #d4af37;
+    box-shadow: 0 0 25px rgba(212,175,55,.15);
+}
+
+.character h3 {
+    font-family: 'IM Fell English SC', serif;
+    color: #d4af37;
+    font-size: 25px;
+    margin: 20px 0 8px;
+}
+
+.character span {
+    color: #77736d;
+    font-size: 12px;
+}
+
+/* =========================
+   HECHIZOS
+========================= */
+
+.spells {
+    background: #050507;
+}
+
+.spell-grid {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.spell {
+    padding: 25px;
+    border-left: 2px solid #d4af37;
+    background: linear-gradient(90deg, rgba(212,175,55,.06), transparent);
+    transition: .3s;
+}
+
+.spell:hover {
+    background: linear-gradient(90deg, rgba(212,175,55,.13), transparent);
+    transform: translateX(8px);
+}
+
+.spell h3 {
+    color: #d4af37;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 25px;
+}
+
+.spell p {
+    color: #8b877f;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+/* =========================
+   CITA
+========================= */
+
+.quote {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background:
+        linear-gradient(rgba(5,5,8,.8), rgba(5,5,8,.9)),
+        radial-gradient(circle, #29233b, #07070a);
+}
+
+.quote div {
+    max-width: 800px;
+}
+
+.quote blockquote {
+    font-family: 'IM Fell English SC', serif;
+    font-size: clamp(28px, 4vw, 50px);
+    color: #d4af37;
+    line-height: 1.4;
+}
+
+.quote p {
+    color: #77736d;
+    margin-top: 25px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 50px 20px;
+    text-align: center;
+    background: #030305;
+    border-top: 1px solid rgba(212,175,55,.15);
+}
+
+footer .logo {
+    margin-bottom: 15px;
+}
+
+footer p {
+    color: #625f59;
+    font-size: 12px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    nav {
+        padding: 15px 5%;
+    }
+
+    nav ul {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 10px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .house-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .character-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+
+    .hero h1 {
+        letter-spacing: 3px;
+    }
+
+    section {
+        padding: 75px 6%;
+    }
+
+    .house-grid,
+    .character-grid,
+    .spell-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h2 {
+        font-size: 38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="magic"></div>
+
+<!-- NAVEGACIÓN -->
+<nav>
+    <div class="logo">⚡ HOGWARTS</div>
+
+    <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#hogwarts">Hogwarts</a></li>
+        <li><a href="#casas">Casas</a></li>
+        <li><a href="#personajes">Personajes</a></li>
+        <li><a href="#hechizos">Hechizos</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <div class="wand">🪄</div>
+
+        <h1>HOGWARTS</h1>
+
+        <h2>ESCUELA DE MAGIA Y HECHICERÍA</h2>
+
+        <p>
+            Bienvenido al mundo mágico. Descubre las casas,
+            los personajes, los hechizos y los secretos de
+            una de las escuelas de magia más famosas.
+        </p>
+
+        <a href="#hogwarts" class="btn">
+            ENTRAR AL MUNDO MÁGICO
+        </a>
+
+    </div>
+
+</header>
+
+<!-- HOGWARTS -->
+<section class="about" id="hogwarts">
+
+    <div class="section-title">
+        <small>EL CASTILLO</small>
+        <h2>Hogwarts</h2>
+        <p>Donde comienza la magia</p>
+    </div>
+
+    <div class="about-grid">
+
+        <div class="castle">
+            <div class="castle-symbol">🏰</div>
+        </div>
+
+        <div class="about-text">
+
+            <h3>Una escuela extraordinaria</h3>
+
+            <p>
+                Hogwarts es una escuela de magia y hechicería
+                situada en un misterioso castillo lleno de
+                pasadizos, torres, retratos encantados y secretos.
+            </p>
+
+            <p>
+                Los estudiantes aprenden encantamientos,
+                pociones, transformaciones, defensa contra las
+                artes oscuras y muchas otras ramas de la magia.
+            </p>
+
+            <p>
+                Al llegar, cada estudiante es seleccionado por
+                el famoso Sombrero Seleccionador para pertenecer
+                a una de las cuatro grandes casas.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CASAS -->
+<section class="houses" id="casas">
+
+    <div class="section-title">
+        <small>EL SOMBRERO SELECCIONADOR</small>
+        <h2>Las Cuatro Casas</h2>
+        <p>¿Dónde pertenecerías tú?</p>
+    </div>
+
+    <div class="house-grid">
+
+        <div class="house gryffindor">
+
+            <div class="house-icon">🦁</div>
+
+            <h3>Gryffindor</h3>
+
+            <p>
+                Valor, coraje, determinación y nobleza.
+                Una casa para quienes enfrentan el peligro
+                sin retroceder.
+            </p>
+
+        </div>
+
+        <div class="house slytherin">
+
+            <div class="house-icon">🐍</div>
+
+            <h3>Slytherin</h3>
+
+            <p>
+                Ambición, inteligencia, liderazgo y astucia.
+                Sus estudiantes siempre buscan alcanzar
+                grandes objetivos.
+            </p>
+
+        </div>
+
+        <div class="house ravenclaw">
+
+            <div class="house-icon">🦅</div>
+
+            <h3>Ravenclaw</h3>
+
+            <p>
+                Inteligencia, creatividad, curiosidad
+                y sabiduría. El conocimiento es su mayor
+                tesoro.
+            </p>
+
+        </div>
+
+        <div class="house hufflepuff">
+
+            <div class="house-icon">🦡</div>
+
+            <h3>Hufflepuff</h3>
+
+            <p>
+                Lealtad, paciencia, trabajo duro y amistad.
+                Siempre están dispuestos a ayudar.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PERSONAJES -->
+<section class="characters" id="personajes">
+
+    <div class="section-title">
+        <small>EL MUNDO MÁGICO</small>
+        <h2>Personajes</h2>
+        <p>Algunas de las figuras más conocidas</p>
+    </div>
+
+    <div class="character-grid">
+
+        <div class="character">
+
+            <div class="character-avatar">⚡</div>
+
+            <h3>Harry Potter</h3>
+
+            <span>El niño que sobrevivió</span>
+
+        </div>
+
+        <div class="character">
+
+            <div class="character-avatar">🧙</div>
+
+            <h3>Albus Dumbledore</h3>
+
+            <span>Director de Hogwarts</span>
+
+        </div>
+
+        <div class="character">
+
+            <div class="character-avatar">🧙‍♀️</div>
+
+            <h3>Hermione Granger</h3>
+
+            <span>Una bruja extraordinaria</span>
+
+        </div>
+
+        <div class="character">
+
+            <div class="character-avatar">🧑‍🦰</div>
+
+            <h3>Ron Weasley</h3>
+
+            <span>Un amigo leal</span>
+
+        </div>
+
+        <div class="character">
+
+            <div class="character-avatar">🐍</div>
+
+            <h3>Draco Malfoy</h3>
+
+            <span>Hijo de Slytherin</span>
+
+        </div>
+
+        <div class="character">
+
+            <div class="character-avatar">🦉</div>
+
+            <h3>Hedwig</h3>
+
+            <span>Una leal compañera</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- HECHIZOS -->
+<section class="spells" id="hechizos">
+
+    <div class="section-title">
+        <small>CLASE DE ENCANTAMIENTOS</small>
+        <h2>Hechizos</h2>
+        <p>Algunos encantamientos del mundo mágico</p>
+    </div>
+
+    <div class="spell-grid">
+
+        <div class="spell">
+            <h3>✨ Lumos</h3>
+            <p>Crea una pequeña fuente de luz en la punta de la varita.</p>
+        </div>
+
+        <div class="spell">
+            <h3>🌑 Nox</h3>
+            <p>Apaga la luz creada mediante Lumos.</p>
+        </div>
+
+        <div class="spell">
+            <h3>🪄 Accio</h3>
+            <p>Encantamiento utilizado para atraer objetos hacia el mago.</p>
+        </div>
+
+        <div class="spell">
+            <h3>🛡️ Protego</h3>
+            <p>Encantamiento defensivo utilizado para proteger al lanzador.</p>
+        </div>
+
+        <div class="spell">
+            <h3>🔓 Alohomora</h3>
+            <p>Encantamiento asociado con la apertura de cerraduras.</p>
+        </div>
+
+        <div class="spell">
+            <h3>🧠 Expecto Patronum</h3>
+            <p>Encantamiento utilizado para conjurar un Patronus.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FRASE -->
+<section class="quote">
+
+    <div>
+
+        <blockquote>
+            "La felicidad se puede encontrar hasta en los momentos más oscuros..."
+        </blockquote>
+
+        <p>— Albus Dumbledore</p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="logo">⚡ HOGWARTS</div>
+
+    <p>
+        Sitio web fan inspirado en el universo mágico de Harry Potter.
+    </p>
+
+    <p style="margin-top:15px;">
+        Hecho con ✨ magia, HTML y CSS.
+    </p>
+
+</footer>
+
+<script>
+
+/* =========================
+   ESTRELLAS MÁGICAS
+========================= */
+
+const magic = document.getElementById("magic");
+
+for (let i = 0; i < 70; i++) {
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left = Math.random() * 100 + "%";
+
+    star.style.animationDuration =
+        (5 + Math.random() * 12) + "s";
+
+    star.style.animationDelay =
+        Math.random() * 10 + "s";
+
+    star.style.transform =
+        `scale(${Math.random() * 1.5 + .5})`;
+
+    magic.appendChild(star);
+}
+
+/* =========================
+   EFECTO DE MAGIA AL HACER CLICK
+========================= */
+
+document.addEventListener("click", function(e) {
+
+    const spark = document.createElement("div");
+
+    spark.style.position = "fixed";
+    spark.style.left = e.clientX + "px";
+    spark.style.top = e.clientY + "px";
+    spark.style.width = "8px";
+    spark.style.height = "8px";
+    spark.style.borderRadius = "50%";
+    spark.style.background = "#d4af37";
+    spark.style.boxShadow = "0 0 20px #fff5b8";
+    spark.style.pointerEvents = "none";
+    spark.style.zIndex = "9999";
+
+    document.body.appendChild(spark);
+
+    spark.animate([
+        {
+            transform: "scale(1)",
+            opacity: 1
+        },
+        {
+            transform: "scale(5)",
+            opacity: 0
+        }
+    ], {
+        duration: 500,
+        easing: "ease-out"
+    });
+
+    setTimeout(() => {
+        spark.remove();
+    }, 500);
+
+});
+
+/* =========================
+   APARICIÓN DE ELEMENTOS
+========================= */
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+
+        }
+
+    });
+
+}, {
+    threshold: .15
+});
+
+document.querySelectorAll(
+    ".house, .character, .spell, .about-text, .castle"
+).forEach(el => {
+
+    el.style.opacity = "0";
+    el.style.transform = "translateY(30px)";
+    el.style.transition = "all .8s ease";
+
+    observer.observe(el);
+
+});
+
+</script>
+
+</body>
+</html>
+```
